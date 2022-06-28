@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+ <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+   <title>Upload Image</title>
+ </head>
+ <body bgcolor="orange">
+
+<nav class="lighten-1" role="navigation" style="height: 100px">
+    <div class="nav-wrapper container">
+      <a id="logo-container" class="brand-logo center"><h2>Optical Character Recognition App</h2></a>
+      <div style="margin-left: 800px">
+      	   Made by <a class="orange-text text-lighten-3"><h2>IbrahimSaiyeIbibaTuray</h2></a>
+      </div>
+    </div>
+  </nav>
+
+   {% if msg %}
+   <h1>{{ msg }}</h1>
+   {% endif %}
+
+   <h1>Upload new File</h1>
+
+   <form method=post enctype=multipart/form-data>
+     <p><input class="btn btn-warning" type=file name=file multiple>
+         <select name="lang">
+			<option value="eng">English</option>
+			<option value="fra">French</option>
+             <option value="chi_tra">Chinese-Traditional</option>
+             <option value="hin">Hindi</option>
+			<option value="ara">Arabic</option>
+             <option value="spa">Spanish</option>
+			<option value="ita">Italian</option>
+		</select> Language
+        <input class="btn btn-success" onclick="performOCR()" type=submit value=Upload>
+       <input type="checkbox" name="hocr" value="hocr" /> hOCR
+   </form>
+
+   <h1>Result:</h1>
+
+   {% if extracted_text %}
+   <div id="bulk_result" style="display: grid; grid-template-columns: repeat(5, 1fr); grid-gap: 10px;">
+     <p> The extracted text from the image above is:<br> <h4> <b> {{ extracted_text }}  </b> </h4>
+   </div>
+   {% else %}
+     The extracted text will be displayed here
+   {% endif %}
+ </body>
+</html>
